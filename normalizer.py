@@ -1,21 +1,21 @@
 from hazm import *
+from PersianStemmer import PersianStemmer
 
 reader = open('/Users/MohammadReza/Desktop/Uni/Semester 5/AI/HWs/2/train.content', 'r')
 writer = open('rem_stop_word.txt', 'w')
 
-stop_words = ['از', 'و', 'به', 'که', 'تا', 'در', 'با', 'را', 'هر', 'یا', '،', '.', ':', '؛', ')', '(', '«', '»', 'ی']
-normalizer = Normalizer()
+stop_words = open('Persian_Stop_Words.txt', 'r').read().splitlines()
+
+ps = PersianStemmer()
 
 cnt = 0
 
 for line in reader:
-    if cnt < 100:
-        norm_line = normalizer.normalize(line)
-        lst = word_tokenize(norm_line)
-        # for word in line.split():
+    if cnt < 20:
+        lst = word_tokenize(line)
         for word in lst:
             if word not in stop_words:
-                writer.write(Stemmer().stem(word) + ' ')
+                writer.write(ps.run(word) + ' ')
         writer.write('\n')
     cnt += 1
 
