@@ -1,3 +1,4 @@
+from hazm import *
 from PersianStemmer import PersianStemmer
 
 
@@ -9,7 +10,8 @@ class custom_normalizer:
         self.ps = PersianStemmer()
 
     def normalize(self, line):
-        words = line.split(' ')
+#         words = line.split(' ')
+        words = word_tokenize(line)
         new_line = ""
         for word in words:
             new_line += self.ps.run(word) + " "
