@@ -11,13 +11,12 @@ ps = PersianStemmer()
 cnt = 0
 
 for line in reader:
-    if cnt < 20:
-        lst = word_tokenize(line)
-        for word in lst:
-            if word not in stop_words:
-                writer.write(ps.run(word) + ' ')
-        writer.write('\n')
-    cnt += 1
+    lst = word_tokenize(line)
+    for word in lst:
+        if word not in stop_words:
+            writer.write(ps.run(word) + ' ')
+    writer.write('\n')
+# cnt += 1
 
 reader.close()
 writer.close()
